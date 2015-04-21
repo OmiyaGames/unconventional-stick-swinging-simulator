@@ -11,11 +11,12 @@ public class RagdollCapsule : MonoBehaviour
     List<StickyRigidbody> allStickies = new List<StickyRigidbody>();
     [SerializeField]
     float drag = 1f;
+	[SerializeField]
+	StickyRigidbody connectedBody = null;
     //[SerializeField]
     //float appliedForce = 10f;
 
     bool collided = false;
-    StickyRigidbody connectedBody = null;
     int index;
     Vector3 forceCache;
 

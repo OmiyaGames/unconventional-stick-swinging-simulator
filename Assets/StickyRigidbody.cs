@@ -9,6 +9,11 @@ public class StickyRigidbody : MonoBehaviour
 
     [SerializeField]
     RagdollCapsule parent = null;
+	//[SerializeField]
+	const float springStrength = 10000f;
+	//[SerializeField]
+	static readonly Vector2 springDistance = new Vector2(0f, 0.1f);
+
     bool connected = false;
     Rigidbody body;
 
@@ -65,8 +70,12 @@ public class StickyRigidbody : MonoBehaviour
             if(otherBody != null)
             {
                 // Create a Fixed Joint
-                FixedJoint joint = gameObject.AddComponent<FixedJoint>();
+                //FixedJoint joint = gameObject.AddComponent<FixedJoint>();
+                SpringJoint joint = gameObject.AddComponent<SpringJoint>();
                 joint.connectedBody = otherBody;
+				joint.spring = springStrength;
+				//joint.minDistance = springDistance.x;
+				//joint.maxDistance = springDistance.y;
 
                 // Notify the parent
                 parent.CollidedWithSticky(this);
